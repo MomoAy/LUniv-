@@ -22,4 +22,8 @@ class VisitorController extends Controller
     {
         return view("visitors.university", ['universities' => University::all()]);
     }
+
+    public function showUniversity(University $id){
+        return view('visitors.showUniversity', ['university' => $id]);
+    }
 }

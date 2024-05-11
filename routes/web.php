@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\VisitorController;
+use App\Models\University;
 use Illuminate\Support\Facades\Route;
 
 
@@ -35,6 +36,8 @@ Route::prefix('/admin')->name('admin.')->controller(AdminController::class)->mid
     Route::get('/universités/{id}', 'editUniversity')->name('editUniversity');
     Route::patch('/universités/{id}', 'updateUniversity')->name('updateUniversity');
     Route::delete('/universités/{id}/delete', 'destroyUniversity')->name('destroyUniversity');
+    Route::get('/universités/{id}/gallery', 'showUniversityGallery')->name('showUniversityGallery');
+    Route::post('/universités/{id}/gallery', 'storeUniversityImage')->name('storeUniversityImage');
 
 //    users
     Route::get('/utilisateurs', 'displayUsers')->name('users');
@@ -51,5 +54,6 @@ Route::prefix('/')->controller(VisitorController::class)->group(function (){
     Route::get('/', 'index')->name('home');
     Route::get('/ranking', 'ranking')->name('ranking');
     Route::get('/university', 'university')->name('university');
+    Route::get('/university/{id}', 'showUniversity')->name("showUniversity");
 });
 //Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard')->middleware(['auth', 'admin']);

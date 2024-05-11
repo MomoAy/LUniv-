@@ -6,10 +6,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use CloudinaryLabs\CloudinaryLaravel\MediaAlly;
 
 class User extends Authenticatable
 {
     use HasFactory, Notifiable;
+    use MediaAlly;
 
     /**
      * The attributes that are mass assignable.
@@ -46,6 +48,6 @@ class User extends Authenticatable
     }
 
     public function notation(){
-        return $this->hasMany(Notaion::class);
+        return $this->hasMany(Notation::class);
     }
 }
