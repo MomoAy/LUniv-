@@ -36,7 +36,7 @@ class VisitorController extends Controller
             ->select('universities.*', DB::raw('AVG(notations.note) as average_rating'))
             ->leftJoin('notations', 'universities.id', '=', 'notations.university_id')
             ->groupBy('universities.id')
-            ->orderByDesc('average_rating')
+            ->orderBy('created_at')
             ->get();
         return view("visitors.university", ['rankedUniversities' => $rankedUniversities]);
     }

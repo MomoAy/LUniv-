@@ -20,16 +20,11 @@ class AdminController extends Controller
 {
     public  function index()
     {
-        $universitiesByCity = DB::table('universities')
-        ->select('city', DB::raw('count(*) as total'))
-        ->groupBy('city')
-        ->get();
-
+        
         $nbUn = University::count();
         $nbCrit = Critère::count();
         $nbUsers = User::count();
-        // dd($universitiesByRegion);
-        return view('admin.dashboard', ['nbUn' => $nbUn, 'nbCrit' => $nbCrit, 'nbUsers' => $nbUsers, 'universitiesByCity' => $universitiesByCity]);
+        return view('admin.dashboard', ['nbUn' => $nbUn, 'nbCrit' => $nbCrit, 'nbUsers' => $nbUsers]);
     }
 
     public  function displayCritere()
@@ -40,12 +35,13 @@ class AdminController extends Controller
 
     public function storeCritere(critRequest $request)
     {
-        $crit = Critère::create($request->validated());
+        Critère::create($request->validated());
         return redirect()->route('admin.critere')->with(
             'success',
             'Opération effectuer avec succès'
         );
     }
+    
     public function editCritere(Critère $id)
     {
         return view('admin.editCritère', ['crit' => $id]);

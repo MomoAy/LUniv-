@@ -135,39 +135,6 @@
             }));
         });
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
-        var universitiesByCityData = {!! json_encode($universitiesByCity) !!};
-        var ctx = document.getElementById('universitiesByCityChart').getContext('2d');
-        var labels = universitiesByCityData.map(function(data) {
-            return data.city;
-        });
-        var values = universitiesByCityData.map(function(data) {
-            return data.total;
-        });
-        var chart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: labels,
-                datasets: [{
-                    label: 'Nombre d\'universités',
-                    data: values,
-                    backgroundColor: 'rgba(54, 162, 235, 0.5)', // Couleur des barres
-                    borderColor: 'rgba(54, 162, 235, 1)',
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
-    </script>
-
-
 
 </body>
 

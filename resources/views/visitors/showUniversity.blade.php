@@ -279,10 +279,13 @@
                 <div class="flex-grow border-t h-px ml-3"></div>
             </div>
 
-            @foreach ($university->notations as $notation)
+            @foreach ($university->notations->sortByDesc('created_at') as $notation)
                 <div class="w-full p-4 bg-gray-100">
                     <div class="p-8 rounded-xl shadow-md"><span class="text-6xl">❝</span>
-                        <p class="text-base">{{ $notation->comment }}</p>
+                        <section class="flex justify-between">
+                            <p class="text-base">{{ $notation->comment }}</p>
+                            <p class="text-gray-500">{{ $notation->created_at }}</p>
+                        </section>
                         <hr class="my-4">
                         <div class="flex flex-wrap items-center">
                             <div class="w-12 h-12 rounded-full">

@@ -85,8 +85,5 @@
                 </div>
             </div>
         </div>
-        <div class="w-full h-16 mt-5">
-            <canvas id="universitiesByCityChart" width="400" height="200"></canvas>
-        </div>
     </div>
 @endsection
