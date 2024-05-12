@@ -42,7 +42,7 @@
             <div id="options" class="absolute bg-white shadow-md rounded-md w-36 hidden flex flex-col p-2">
                 <a class="hover:bg-blue-500 hover:text-white text-center rounded-md"
                     href="{{ route('profile.edit') }}">Profil</a>
-                <a class="hover:bg-blue-500 text-center hover:text-white rounded-md" href="#">Option 3</a>
+
                 <form action="{{ route('logout') }}" method="POST">
                     @csrf
                     <button class="hover:bg-blue-500 text-center hover:text-white rounded-md w-full"

@@ -13,15 +13,23 @@ use App\Models\University;
 use App\Models\User;
 use Illuminate\Http\Request;
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
+use Illuminate\Support\Facades\DB;
+
 
 class AdminController extends Controller
 {
     public  function index()
     {
+        $universitiesByCity = DB::table('universities')
+        ->select('city', DB::raw('count(*) as total'))
+        ->groupBy('city')
+        ->get();
+
         $nbUn = University::count();
         $nbCrit = Critère::count();
         $nbUsers = User::count();
-        return view('admin.dashboard', ['nbUn' => $nbUn, 'nbCrit' => $nbCrit, 'nbUsers' => $nbUsers]);
+        // dd($universitiesByRegion);
+        return view('admin.dashboard', ['nbUn' => $nbUn, 'nbCrit' => $nbCrit, 'nbUsers' => $nbUsers, 'universitiesByCity' => $universitiesByCity]);
     }
 
     public  function displayCritere()

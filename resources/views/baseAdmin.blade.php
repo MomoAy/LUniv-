@@ -12,6 +12,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
     <script defer src="https://unpkg.com/alpinejs@latest/dist/cdn.min.js"></script>
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.min.js"
+        integrity="sha512-L0Shl7nXXzIlBSUUPpxrokqq4ojqgZFQczTYlGjzONGTDAcLremjwaWv5A+EDLnxhQzY5xUZPWLOLqYRkY0Cbw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script> --}}
     <style>
         * {
             font-family: 'Roboto', sans-serif;
@@ -132,6 +135,38 @@
             }));
         });
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        var universitiesByCityData = {!! json_encode($universitiesByCity) !!};
+        var ctx = document.getElementById('universitiesByCityChart').getContext('2d');
+        var labels = universitiesByCityData.map(function(data) {
+            return data.city;
+        });
+        var values = universitiesByCityData.map(function(data) {
+            return data.total;
+        });
+        var chart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Nombre d\'universités',
+                    data: values,
+                    backgroundColor: 'rgba(54, 162, 235, 0.5)', // Couleur des barres
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+
 
 
 </body>

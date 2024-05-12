@@ -188,10 +188,16 @@
                                     {{ $user->name }}
                                 </div>
                                 <div class="text-sm text-gray-600 ">
-                                    {{ $notation->note }}
+                                    <p><span class="float-left mt-1 mr-1">{{ $notation->note }}</span><img
+                                            width="24" height="24"
+                                            src="https://img.icons8.com/fluency/48/star--v1.png" alt="star--v1" />
+                                    </p>
+
                                 </div>
                             </div>
-                            <div class="text-xs text-gray-600 ">
+                            <div class="text-xs text-gray-600 flex flex-col justify-end">
+                                <h3 class="font-semibold">{{ $notation->university->acronyme }} -
+                                    {{ $notation->university->country }}</h3>
                                 {{ $notation->comment }}
                             </div>
                         </div>
@@ -205,7 +211,7 @@
                 @csrf
                 <button
                     class="overflow-hidden relative w-60 p-2 h-12 bg-black text-white border-none rounded-md text-xl font-bold cursor-pointer relative z-10 group">
-                    Hover me!
+                    Survole moi!
                     <span
                         class="absolute w-60 h-32 -top-8 -left-2 bg-green-200 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform group-hover:duration-500 duration-1000 origin-bottom"></span>
                     <span

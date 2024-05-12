@@ -36,22 +36,67 @@
         <div class="w-4/5 mx-auto rounded-md shadow-xl my-10 p-5 bg-white">
 
             {{-- Caroussel --}}
-            <h2 class="text-center text-2xl font-semibold mb-4">Présentation en Images</h2>
-            <div class="carousel relative overflow-hidden">
-                <div class="carousel-inner flex transition-transform duration-500 ease-in-out">
+            <div id="default-carousel" class="relative w-full" data-carousel="slide">
+                <!-- Carousel wrapper -->
+                <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
+                    <!-- Item 1 -->
                     @foreach ($university->images as $image)
                         @php
                             $img = $image->url;
                             $vue = 'images/university/' . $img;
                             // echo $vue;
                         @endphp
-
-                        <img src="{{ asset($vue) }}" alt="Image de l'université {{ $university->acronyme }}"
-                            class="object-cover">
+                        <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                            <img src="{{ asset($vue) }}"
+                                class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+                                alt="...">
+                        </div>
                     @endforeach
 
+
                 </div>
+                <!-- Slider indicators -->
+                <div class="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse">
+                    <button type="button" class="w-3 h-3 rounded-full" aria-current="true" aria-label="Slide 1"
+                        data-carousel-slide-to="0"></button>
+                    <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 2"
+                        data-carousel-slide-to="1"></button>
+                    <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 3"
+                        data-carousel-slide-to="2"></button>
+                    <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 4"
+                        data-carousel-slide-to="3"></button>
+                    <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 5"
+                        data-carousel-slide-to="4"></button>
+                </div>
+                <!-- Slider controls -->
+                <button type="button"
+                    class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+                    data-carousel-prev>
+                    <span
+                        class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+                        <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M5 1 1 5l4 4" />
+                        </svg>
+                        <span class="sr-only">Previous</span>
+                    </span>
+                </button>
+                <button type="button"
+                    class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+                    data-carousel-next>
+                    <span
+                        class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
+                        <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m1 9 4-4-4-4" />
+                        </svg>
+                        <span class="sr-only">Next</span>
+                    </span>
+                </button>
             </div>
+
 
             {{-- 1er Divider --}}
             <div class="flex my-2 text-sm font-semibold items-center text-gray-800">
@@ -111,11 +156,13 @@
                 <div
                     class="w-full px-4 py-4 mt-6 bg-white rounded-lg shadow-lg sm:w-1/2 md:w-1/2 lg:w-1/4 dark:bg-gray-800">
                     <div class="flex-shrink-0">
-                        <div class="flex items-center justify-center w-12 h-12 mx-auto text-white bg-indigo-500 rounded-md">
+                        <div
+                            class="flex items-center justify-center w-12 h-12 mx-auto text-white bg-indigo-500 rounded-md">
                             <svg viewBox="0 0 50 50" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
                                 <path fill="none" d="M0 0h50v50H0z"></path>
                                 <circle cx="25" cy="25" fill="none" r="24" stroke="#ffffff"
-                                    stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" class="stroke-000000">
+                                    stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"
+                                    class="stroke-000000">
                                 </circle>
                                 <ellipse cx="25" cy="25" fill="none" rx="12" ry="24"
                                     stroke="#ffffff" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"
@@ -252,7 +299,8 @@
                             <p class="mx-2 text-gray-500 text-sm">
                                 {{ $notation->user->name }}<br> <span class="float-left">{{ $notation->note }}</span>
                                 <img width="24" height="24" src="https://img.icons8.com/fluency/48/star--v1.png"
-                                    alt="star--v1" /></p>
+                                    alt="star--v1" />
+                            </p>
                         </div>
                     </div>
                 </div>
