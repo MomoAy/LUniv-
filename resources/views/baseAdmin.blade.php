@@ -66,7 +66,7 @@
                 <h2><a href="{{ route('profile.edit') }}">Profil</a></h2>
             </div>
         </div>
-        <div class='bg-grey-100 w-5/6 m-5 overflow-y-auto'>
+        <div class='bg-grey-100 w-5/6 m-5  overflow-y-auto'>
             <div class="flex justify-end items-center mb-5">
                 <div class="relative cursor-pointer w-16 h-16">
                     <? xml version = "1.0" ?>

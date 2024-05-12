@@ -41,7 +41,8 @@ Route::prefix('/admin')->name('admin.')->controller(AdminController::class)->mid
 
 //    users
     Route::get('/utilisateurs', 'displayUsers')->name('users');
-    Route::get('/utilisateurs/{id}', 'editUser')->name('editUser');//TODO : pouvoir voir les commentaires d'un utilisateur ciible
+    Route::get('/utilisateurs/{id}', 'editUser')->name('editUser');//TODO : pouvoir voir les commentaires d'un utilisateur cible
+    Route::get('/utilisateurs/{id}/deleteComment', 'deleteComment')->name('deleteComment');
     Route::delete('/utilisateurs/{id}/delete', 'destroyUsers')->name('destroyUser');
 
 });

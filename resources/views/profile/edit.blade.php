@@ -54,16 +54,30 @@
         </div>
     @endif
     <div class="container bg-sky-50 p-10">
-        <a href="{{ route('home') }}"
-            class=" w-16 inline-block rounded-2xl border border-blue-600 bg-blue-600 p-3 text-white hover:bg-transparent hover:text-indigo-600 focus:outline-none focus:ring active:text-indigo-500">
-            <?xml version="1.0" ?><svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-                <title />
-                <g data-name="Layer 2" id="Layer_2">
-                    <path
-                        d="M10.1,23a1,1,0,0,0,0-1.41L5.5,17H29.05a1,1,0,0,0,0-2H5.53l4.57-4.57A1,1,0,0,0,8.68,9L2.32,15.37a.9.9,0,0,0,0,1.27L8.68,23A1,1,0,0,0,10.1,23Z" />
-                </g>
-            </svg>
-        </a>
+        @if (Auth::user()->isAdmin)
+            <a href="{{ route('admin.dashboard') }}"
+                class=" w-16 inline-block rounded-2xl border border-blue-600 bg-blue-600 p-3 text-white hover:bg-transparent hover:text-indigo-600 focus:outline-none focus:ring active:text-indigo-500">
+                <?xml version="1.0" ?><svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                    <title />
+                    <g data-name="Layer 2" id="Layer_2">
+                        <path
+                            d="M10.1,23a1,1,0,0,0,0-1.41L5.5,17H29.05a1,1,0,0,0,0-2H5.53l4.57-4.57A1,1,0,0,0,8.68,9L2.32,15.37a.9.9,0,0,0,0,1.27L8.68,23A1,1,0,0,0,10.1,23Z" />
+                    </g>
+                </svg>
+            </a>
+        @else
+            <a href="{{ route('home') }}"
+                class=" w-16 inline-block rounded-2xl border border-blue-600 bg-blue-600 p-3 text-white hover:bg-transparent hover:text-indigo-600 focus:outline-none focus:ring active:text-indigo-500">
+                <?xml version="1.0" ?><svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                    <title />
+                    <g data-name="Layer 2" id="Layer_2">
+                        <path
+                            d="M10.1,23a1,1,0,0,0,0-1.41L5.5,17H29.05a1,1,0,0,0,0-2H5.53l4.57-4.57A1,1,0,0,0,8.68,9L2.32,15.37a.9.9,0,0,0,0,1.27L8.68,23A1,1,0,0,0,10.1,23Z" />
+                    </g>
+                </svg>
+            </a>
+        @endif
+
         <div class="mx-auto w-32 h-32 rounded-full">
             <?xml version="1.0" ?><svg viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
                 <rect fill="none" height="256" width="256" />
@@ -110,9 +124,9 @@
 
         <h3 class="text-xl my-5 font-semibold">Sécurité</h3>
         <div class="bg-white rounded-xl shadow-md w-full border p-5 mb-5">
-            <form action="{{ route('profile.update') }}" method="POST">
+            <form action="{{ route('password.update') }}" method="POST">
                 @csrf
-                @method('PATCH')
+                @method('PUT')
 
                 <div class="mb-5">
                     <label for="small-input" class="block mb-2 text-sm font-medium text-gray-900 ">Mot de Passe actuel :
@@ -184,6 +198,26 @@
                     </li>
                 </a>
             @endforeach
+        </div>
+
+        <div class="w-full h-64 flex justify-center items-center bg-white border shadow-md rounded-xl">
+            <form action="{{ route('logout') }}" method="POST">
+                @csrf
+                <button
+                    class="overflow-hidden relative w-60 p-2 h-12 bg-black text-white border-none rounded-md text-xl font-bold cursor-pointer relative z-10 group">
+                    Hover me!
+                    <span
+                        class="absolute w-60 h-32 -top-8 -left-2 bg-green-200 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform group-hover:duration-500 duration-1000 origin-bottom"></span>
+                    <span
+                        class="absolute w-60 h-32 -top-8 -left-2 bg-green-400 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform group-hover:duration-700 duration-700 origin-bottom"></span>
+                    <span
+                        class="absolute w-60 h-32 -top-8 -left-2 bg-green-600 rounded-full transform scale-x-0 group-hover:scale-x-100 transition-transform group-hover:duration-1000 duration-500 origin-bottom"></span>
+                    <span
+                        class="group-hover:opacity-100 group-hover:duration-1000 duration-100 opacity-0 absolute top-2.5 left-6 z-10">Deconnexion
+                        !</span>
+                </button>
+
+            </form>
         </div>
 
     </div>

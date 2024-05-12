@@ -8,6 +8,7 @@ use App\Http\Requests\univFullRequest;
 use App\Http\Requests\univRequest;
 use App\Models\Critère;
 use App\Models\Images;
+use App\Models\Notation;
 use App\Models\University;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -106,7 +107,7 @@ class AdminController extends Controller
     public function storeUniversityImage(Request $request, $id)
     {
         $request->validate([
-            'image' => ['required', 'image', 'mimes:jpeg,png,jpg,gif'], // Validation pour le champ image
+            'image' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,webp'], // Validation pour le champ image
         ]);
         $imageName = $request->file('image')->getClientOriginalName();
         
@@ -136,5 +137,9 @@ class AdminController extends Controller
             'operation effectuer avec success'
         );
 
+    }
+    public function deleteComment(Notation $id){
+        $id->delete();
+        return back()->with('success', 'Opération effectuer avec succes');
     }
 }

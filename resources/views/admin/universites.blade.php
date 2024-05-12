@@ -5,7 +5,7 @@
         <div class="my-5">
             <h1 class="">{{ Breadcrumbs::render('university') }}</h1>
         </div>
-        <div class="overflow-x-auto w-full h-fit">
+        <div class=" w-full h-fit">
             <div class="flex justify-end mb-5">
                 <button data-modal-target="add-modal" data-modal-toggle="add-modal"
                     class="group relative inline-flex items-center overflow-hidden rounded bg-green-400 px-8 py-3 text-white focus:outline-none focus:ring active:bg-green-500">

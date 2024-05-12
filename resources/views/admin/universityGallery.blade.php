@@ -21,17 +21,22 @@
             </form>
         </div>
 
-        <div class="grid grid-cols-3 gap-4">
-            @foreach ($images as $image)
-                @php
-                    $img = $image->url;
-                    $vue = 'images/university/' . $img;
-                    // echo $vue;
-                @endphp
-                <div>
-                    <img src="{{ asset($vue) }}" alt="Image de l'université {{ $university->acronyme }}">
+        <section>
+            <div class="px-8 py-24 mx-auto md:px-12 lg:px-32 max-w-7xl">
+                <div class="grid grid-cols-1 gap-2 lg:grid-cols-4">
+                    @foreach ($images as $image)
+                        @php
+                            $img = $image->url;
+                            $vue = 'images/university/' . $img;
+                            // echo $vue;
+                        @endphp
+                        <div class="h-full p-2 overflow-hidden duration-500 border rounded-3xl hover:-translate-y-4">
+                            <img src="{{ asset($vue) }}" alt="Image de l'université {{ $university->acronyme }}"
+                                class="object-cover h-full border shadow-2xl rounded-2xl aspect-square">
+                        </div>
+                    @endforeach
                 </div>
-            @endforeach
-        </div>
+            </div>
+        </section>
     </div>
 @endsection
