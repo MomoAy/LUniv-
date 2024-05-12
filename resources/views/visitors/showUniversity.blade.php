@@ -184,28 +184,33 @@
             {{-- Commentaires --}}
             @if (Auth::user())
                 <div class="notation section">
-                    @foreach ( as )
-                        
-                    @endforeach
-                    <div class="rating-box">
-                        <div class="stars">
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                        </div>
-                    </div>
-                    <div class="comment-section mb-4">
-                        <form class="mt-4" action="" method="post">
-                            @csrf
-                            <textarea id="comment-input" rows="4" class="w-full border p-2" placeholder="Ajouter un commentaire..."></textarea>
+                    <form class="mt-4"
+                        action="{{ route('addNotation', ['usid' => Auth::user()->id, 'unid' => $university->id]) }}"
+                        method="post">
+                        @csrf
+                        @foreach ($crits as $crit)
+                            <div class="rating-box">
+                                <li class="text-xl font-semibold mb-4">{{ $crit->name }}</li>
+                                <input type="hidden" name="crit_{{ $crit->id }}" value=0>
+                                <div class="stars stars-{{ $crit->id }}">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                </div>
+                            </div>
+                        @endforeach
+
+                        <div class="w-5/6 mb-4 mx-auto">
+                            <textarea name="comment" id="comment-input" rows="4" class="w-full border p-2"
+                                placeholder="Ajouter un commentaire...">{{ old('comment') }}</textarea>
                             <div class="flex justify-end">
                                 <button type="submit"
                                     class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded mt-2">Commenter</button>
                             </div>
-                        </form>
-                    </div>
+                        </div>
+                    </form>
                 </div>
             @else
                 <div class="flex justify-center items-center h-64 flex-col space-y-4">
@@ -227,6 +232,31 @@
                 <div class="flex-grow border-t h-px ml-3"></div>
             </div>
 
+            @foreach ($university->notations as $notation)
+                <div class="w-full p-4 bg-gray-100">
+                    <div class="p-8 rounded-xl shadow-md"><span class="text-6xl">❝</span>
+                        <p class="text-base">{{ $notation->comment }}</p>
+                        <hr class="my-4">
+                        <div class="flex flex-wrap items-center">
+                            <div class="w-12 h-12 rounded-full">
+                                <?xml version="1.0" ?><svg viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                                    <rect fill="none" height="256" width="256" />
+                                    <circle cx="128" cy="128" fill="none" r="96" stroke="#000"
+                                        stroke-linecap="round" stroke-linejoin="round" stroke-width="12" />
+                                    <circle cx="128" cy="120" fill="none" r="40" stroke="#000"
+                                        stroke-linecap="round" stroke-linejoin="round" stroke-width="12" />
+                                    <path d="M63.8,199.4a72,72,0,0,1,128.4,0" fill="none" stroke="#000"
+                                        stroke-linecap="round" stroke-linejoin="round" stroke-width="12" />
+                                </svg>
+                            </div>
+                            <p class="mx-2 text-gray-500 text-sm">
+                                {{ $notation->user->name }}<br> <span class="float-left">{{ $notation->note }}</span>
+                                <img width="24" height="24" src="https://img.icons8.com/fluency/48/star--v1.png"
+                                    alt="star--v1" /></p>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
 
         </div>
 

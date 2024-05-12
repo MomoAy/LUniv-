@@ -1,5 +1,5 @@
 @php use Illuminate\Support\Facades\Auth; @endphp
-<nav class="w-full h-24 bg-gray-100 shadow-xl flex justify-between items-center fixed top-0 z-50">
+<nav class="w-full h-24 bg-gray-100 shadow-xl flex justify-between items-center fixed top-0 z-10">
     <div class="flex items-center justify-start">
         <img class="w-16 h-16" src="{{ asset('images/logo.png') }}" alt="logo du syte">
         <a href="{{ route('home') }}" class="text-3xl font-bold">LUniv</a>

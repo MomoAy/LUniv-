@@ -44,10 +44,7 @@
         }
 
         /* Styles pour la zone de commentaires */
-        .comment-section {
-            border: 1px solid #ddd;
-            padding: 20px;
-        }
+
 
         .comments {
             margin-bottom: 20px;
@@ -110,6 +107,12 @@
 </head>
 
 <body class="w-screen overflow-clip overflow-y-auto">
+    @if (session('success'))
+        <div x-cloak x-show="showAlert" x-data="{ showAlert: true }" x-init="setTimeout(() => showAlert = false, 3000)" role="alert"
+            class="fixed bottom-0 right-0 bg-green-100 p-4 w-72 animate__animated animate__fadeInRight h-12">
+            {{ session('success') }}
+        </div>
+    @endif
     @if (\Illuminate\Support\Facades\Request::route()->getName() === 'home')
         <div class="w-screen h-screen">
             <!-- Video en arrière-plan -->
@@ -136,35 +139,32 @@
         <div class="w-full h-full">
             @include('layouts.navbar')
         </div>
-        <div class="stars">
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-        </div>
         @yield('content')
     @endif
 
 
 
     <script>
-        // Select all elements with the "i" tag and store them in a NodeList called "stars"
-        const stars = document.querySelectorAll(".stars i");
+        // Select all rating boxes
+        const ratingBoxes = document.querySelectorAll(".rating-box");
 
-        // Loop through the "stars" NodeList
-        stars.forEach((star, index1) => {
-            // Add an event listener that runs a function when the "click" event is triggered
-            star.addEventListener("click", () => {
-                // Loop through the "stars" NodeList Again
-                stars.forEach((star, index2) => {
-                    // Add the "active" class to the clicked star and any stars with a lower index
-                    // and remove the "active" class from any stars with a higher index
-                    index1 >= index2 ? star.classList.add("active") : star.classList.remove(
-                        "active");
+        // Loop through each rating box
+        ratingBoxes.forEach(box => {
+            const stars = box.querySelectorAll(".stars i");
+
+            stars.forEach((star, index1) => {
+                star.addEventListener("click", () => {
+                    stars.forEach((star, index2) => {
+                        index1 >= index2 ? star.classList.add("active") : star.classList
+                            .remove("active");
+                    });
+                    const hiddenInput = box.querySelector("input[type=hidden]");
+                    hiddenInput.value = index1 + 1;
                 });
             });
         });
+
+
 
         function showOptions(event) {
             var divToHover = document.getElementById('divToHover');

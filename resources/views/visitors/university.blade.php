@@ -12,31 +12,35 @@
         </div>
 
         <section class="w-full flex flex-wrap justify-center space-x-4 my-5">
-            @foreach ($universities as $university)
-                @if ($university->images->isNotEmpty())
+            @foreach ($rankedUniversities as $rankedUniversity)
+                @if ($rankedUniversity->images->isNotEmpty())
                     @php
-                        $img = $university->images[0]->url;
+                        $img = $rankedUniversity->images[0]->url;
                         $vue = 'images/university/' . $img;
                     @endphp
-                    <a class="w-1/6 text-white" href="{{ route('showUniversity', ['id' => $university->id]) }}">
+                    <a class="w-1/6 text-white" href="{{ route('showUniversity', ['id' => $rankedUniversity->id]) }}">
                         <div style="background-image: url({{ asset($vue) }})"
                             class="w-full flex justify-between items-end rounded-xl hover:scale-110 transition-transform duration-300 mt-4 p-2 h-80 bg-cover border-gray-200 shadow-md">
-                            <h3>{{ $university->acronyme }}</h3>
+                            <h3>{{ $rankedUniversity->acronyme }}</h3>
 
-                            <p><span class="float-left">4</span><img width="24" height="24"
-                                    src="https://img.icons8.com/fluency/48/star--v1.png" alt="star--v1" /></p>
+                            <p><span class="float-left">{{ number_format($rankedUniversity->average_rating, 1) }}</span><img
+                                    width="24" height="24" src="https://img.icons8.com/fluency/48/star--v1.png"
+                                    alt="star--v1" />
+                            </p>
                         </div>
                     </a>
                 @else
                     @php
                         $vue = 'images/university/404.jpg';
                     @endphp
-                    <a class="w-1/6" href="{{ route('showUniversity', ['id' => $university->id]) }}">
+                    <a class="w-1/6" href="{{ route('showUniversity', ['id' => $rankedUniversity->id]) }}">
                         <div style="background-image: url({{ asset($vue) }})"
                             class="w-full flex justify-between items-end rounded-xl hover:scale-110 transition-transform duration-300 mt-4 p-2 h-80 bg-cover border-gray-200 shadow-md">
-                            <h3>{{ $university->acronyme }}</h3>
-                            <p><span class="float-left">4</span><img width="24" height="24"
-                                    src="https://img.icons8.com/fluency/48/star--v1.png" alt="star--v1" /></p>
+                            <h3>{{ $rankedUniversity->acronyme }}</h3>
+                            <p><span class="float-left">{{ number_format($rankedUniversity->average_rating, 1) }}</span><img
+                                    width="24" height="24" src="https://img.icons8.com/fluency/48/star--v1.png"
+                                    alt="star--v1" />
+                            </p>
                         </div>
                     </a>
                 @endif

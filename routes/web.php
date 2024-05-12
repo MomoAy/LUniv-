@@ -46,8 +46,8 @@ Route::prefix('/admin')->name('admin.')->controller(AdminController::class)->mid
 
 });
 
-Route::prefix('/user')->controller(VisitorController::class)->middleware(['auh'])->group(function (){
-
+Route::prefix('/auth')->controller(VisitorController::class)->middleware(['auth'])->group(function (){
+    Route::post('/notation/{usid}/university/{unid}', 'addNotation')->name('addNotation');
 });
 
 Route::prefix('/')->controller(VisitorController::class)->group(function (){

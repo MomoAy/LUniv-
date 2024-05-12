@@ -9,7 +9,10 @@ class Notation extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'comment'
+        'comment',
+        'note',
+        'user_id',
+        'university_id'
     ];
 
     public function university()
