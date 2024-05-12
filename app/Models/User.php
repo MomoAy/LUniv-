@@ -47,7 +47,7 @@ class User extends Authenticatable
         ];
     }
 
-    public function notation(){
+    public function notations(){
         return $this->hasMany(Notation::class);
     }
 }
