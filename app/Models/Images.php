@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Images extends Model
 {
     use HasFactory;
-    protected $fillable = [];
+    protected $fillable = ['url', 'university_id'];
 
     public function university()
     {

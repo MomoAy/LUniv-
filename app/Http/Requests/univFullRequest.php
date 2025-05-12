@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
+use App\Models\University;
 
 class univFullRequest extends FormRequest
 {
@@ -31,8 +33,8 @@ class univFullRequest extends FormRequest
             'city' => ['string', 'required'],
             'webSite' => ['string', 'required'],
             'email' => ['string'],
-            'contact' => ['string', 'required', 'unique:universities,contact'],
-            'contact2' => ['integer', 'nullable'],
+            'contact' => ['string', 'required'],
+            'contact2' => ['string', 'nullable'],
             'nbStudents' => ['integer', 'required'],
             'percentageIntegration' => ['required']
         ];
